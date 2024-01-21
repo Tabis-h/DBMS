@@ -8,12 +8,35 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
-            <h1>
-                signup
-            </h1>
+        <form action="" method="post">
+            <h1>Signup</h1>
+            <div class="input-class">
+                <input type="text" placeholder="First name" required>
+            </div>
+            <div class="input-class">
+                <input type="text" placeholder="Last name" required>
+            </div>
+            <div class="input-class">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-class">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div class="input-class">
+                <input type="tel" placeholder="Phone number" required>
+            </div>
+            <div class="input-class">
+                <input type="date" placeholder="Age" required>
+            </div>
+            <div class="input-class">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+            </div>
+            <div class="login-link">
+                <button type="submit" class="btn">Signup</button>
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
         </form>
     </div>
-    
 </body>
 </html>
