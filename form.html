@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Driving School</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        header {
+            background-color: white; /* Blue header */
+            color: black;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: white; /* Darker blue navigation */
+            color: #000000;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 1em 1.5em;
+            margin: 0 1em;
+            transition: color 0.3s; /* Smooth color transition on hover */
+        }
+
+        nav a:hover {
+            color: #ecf0f1; /* Light gray on hover */
+        }
+
+        section {
+            background-color: #ffffff;
+            padding: 2em;
+            border-top: 1px solid #dcdcdc; /* Light gray border */
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #2c3e50; /* Dark footer */
+            color: #ffffff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="margin-bottom: 0;">Car Driving School</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="toggleCourses()">Courses</a>
+        <a href="#">Instructors</a>
+        <a href="#">Contact</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <section>
+        <h2>Application Form</h2>
+        <form>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <option value="suv">SUV Driving Course(6 weeks)</option>
+                <option value="sedan">SUV Driving Course(8 weeks)</option>
+                <option value="motorcycle">SUV Driving Course(9 weeks)</option>
+                <!-- Add more courses as needed -->
+            </select>
+
+            <label for="startDate">Starting Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Car Driving School</p>
+    </footer>
+
+    <script>
+        function toggleCourses() {
+            var coursesSection = document.getElementById("coursesSection");
+            coursesSection.style.display = (coursesSection.style.display === "none") ? "block" : "none";
+        }
+    </script>
+</body>
+
+</html>
