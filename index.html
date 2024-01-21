@@ -5,79 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Driving School</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff; /* Set background color to white */
-        }
+    <link rel="stylesheet" href="index-style.css">
 
-        header {
-            background-color: #9cdef2;
-            color: #000000;
-            padding: 1em;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-BFVHzxhpr3sKJRDXmLW3o2ZUvZl+g1yUWRwBzCGj8v7+/Hc1hvDdE4Lk8tntDxG4Hs2NoOJ/N6tCx9e9VTJlbA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        nav {
-            background-color: #b7f4f3;
-            color: #333;
-            padding: 1em;
-            text-align: center;
-        }
-
-        nav a {
-            color:#000000;
-            text-decoration: none;
-            padding: 1em 1.5em; /* Adjust padding as needed */
-            margin: 0 1em;
-        }
-
-        section {
-            background-color: #f2f2f2; /* Set background color for the content section */
-            padding: 2em;
-            border-top: 1px solid #ccc; /* Add a border at the top to separate from the header */
-        }
-
-        footer {
-            background-color: #000000;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 
 <body>
 
     <header>
-        <h1>Car Driving School</h1>
+        <h1 style="margin-bottom: 0;">Car Driving School</h1>
     </header>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Courses</a>
+        <a href="#" onclick="toggleCourses()">Courses</a>
         <a href="#">Instructors</a>
         <a href="#">Contact</a>
-        <a href = "login.html">Login</a>
+        <a href="login.html">Login</a>
+        <div class="user-profile-btn">
+            <img src="userpfp.png" alt="User Avatar">
+            <div class="dropdown">
+                <i class="fas fa-caret-down"></i>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <section>
-        <h2>Welcome to our Driving School!</h2>
-        <p>Learn to drive safely with our professional instructors. We offer a range of courses to suit all levels of
-            experience.</p>
-        <img src="D:\DBMS project\html\car_image.jpg" alt="Driving School Image" style="max-width: 100%; height: auto;">
+    <section id="coursesSection" style="display: none;">
+        <h2>Courses Offered</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Fees (Rs)</th>
+                    <th>Course Length</th>
+                    <th>Timing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="form.html">SUV Driving Course</a></td>
+                    <td>9000</td>
+                    <td>6 weeks</td>
+                    <td>Mon-Fri, 9 am - 12 pm</td>
+                </tr>
+                <tr>
+                    <td><a href="form.html">Sedan Driving Course</a></td>
+                    <td>7000</td>
+                    <td>8 weeks</td>
+                    <td>Mon-Fri, 2 pm - 5 pm</td>
+                </tr>
+                <tr>
+                    <td><a href="form.html">Motorcycle Riding Course</a></td>
+                    <td>5000</td>
+                    <td>9 weeks</td>
+                    <td>Sat-Sun, 10 am - 1 pm</td>
+                </tr>
+                <!-- Add more courses as needed -->
+            </tbody>
+        </table>
     </section>
 
     <footer>
         <p>&copy; 2024 Car Driving School</p>
     </footer>
 
+    <script>
+        function toggleCourses() {
+            var coursesSection = document.getElementById("coursesSection");
+            coursesSection.style.display = (coursesSection.style.display === "none") ? "block" : "none";
+        }
+    </script>
 </body>
 
 </html>
