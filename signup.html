@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGNUP</title>
     <link rel="stylesheet" href="signup-style.css">
+    <style>
+        /* Add your custom styles here */
+        .input-class {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-class label {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
-        <form action="" method="post">
+        <form action="http://localhost:3000/signup" method="post">
             <h1>Signup</h1>
             <div class="input-class">
                 <input type="text" placeholder="First name" required>
@@ -26,7 +38,8 @@
                 <input type="tel" placeholder="Phone number" required>
             </div>
             <div class="input-class">
-                <input type="date" placeholder="Age" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Age" min="18" max="99" required>
             </div>
             <div class="input-class">
                 <label><input type="radio" name="gender" value="male" required> Male</label>
