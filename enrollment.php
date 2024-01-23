@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="enrollment_process.php" method="post">
+
+        <h1>Enrollment Form</h1>
+
+        <label for="course">Select Course:</label>
+        <select name="course" id="course" required>
+            <option value="suv-6">SUV Driving Course (6 weeks)</option>
+            <option value="sedan-8">Sedan Driving Course (8 weeks)</option>
+            <option value="motorcycle-9">Motorcycle Riding Course (9 weeks)</option>
+            <!-- Add more courses as needed -->
+        </select>
+
+        <label for="fullname">Full Name:</label>
+        <input type="text" name="fullname" id="fullname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" name="phone" id="phone" required>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+
+</html>

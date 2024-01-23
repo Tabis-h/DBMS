@@ -11,28 +11,26 @@
         integrity="sha512-BFVHzxhpr3sKJRDXmLW3o2ZUvZl+g1yUWRwBzCGj8v7+/Hc1hvDdE4Lk8tntDxG4Hs2NoOJ/N6tCx9e9VTJlbA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    
 </head>
 
 <body>
 
     <header>
         <h1 style="margin-bottom: 0;">Car Driving School</h1>
+        <button class="admin-btn" onclick="redirectToAdmin()">Admin</button>
     </header>
 
     <nav>
         <a href="#" onclick="toggleCourses()">Courses</a>
-        <a href="#">Instructors</a>
-        <a href="#">Contact</a>
-        <a href="login.html">Login</a>
+        <a href="enrollment.php">Enrollment</a>
+        <a href="login.php">Login</a>
         <div class="user-profile-btn">
-            <img src="userpfp.png" alt="User Avatar">
-            <div class="dropdown">
-                <i class="fas fa-caret-down"></i>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Settings</a>
-                    <a href="#">Logout</a>
-                </div>
+            <button class="dropbtn">Profile <i class="fas fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
             </div>
         </div>
     </nav>
@@ -50,19 +48,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="form.html">SUV Driving Course</a></td>
+                    <td>SUV Driving Course</td>
                     <td>9000</td>
                     <td>6 weeks</td>
                     <td>Mon-Fri, 9 am - 12 pm</td>
                 </tr>
                 <tr>
-                    <td><a href="form.html">Sedan Driving Course</a></td>
+                    <td>SUV Driving Course</td>
                     <td>7000</td>
                     <td>8 weeks</td>
                     <td>Mon-Fri, 2 pm - 5 pm</td>
                 </tr>
                 <tr>
-                    <td><a href="form.html">Motorcycle Riding Course</a></td>
+                    <td>SUV Driving Course</td>
                     <td>5000</td>
                     <td>9 weeks</td>
                     <td>Sat-Sun, 10 am - 1 pm</td>
@@ -80,6 +78,11 @@
         function toggleCourses() {
             var coursesSection = document.getElementById("coursesSection");
             coursesSection.style.display = (coursesSection.style.display === "none") ? "block" : "none";
+        }
+
+        function redirectToAdmin() {
+            // Redirect to admin page or perform admin-related actions
+            alert("Redirecting to Admin Page");
         }
     </script>
 </body>

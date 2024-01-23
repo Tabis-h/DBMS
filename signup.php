@@ -1,3 +1,4 @@
+<?php include('server.php')?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,34 +21,35 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="http://localhost:3000/signup" method="post">
+        <form action="server.php" method="post">
             <h1>Signup</h1>
             <div class="input-class">
-                <input type="text" placeholder="First name" required>
+                <input type="text" placeholder="First name" required name="firstname">
             </div>
             <div class="input-class">
-                <input type="text" placeholder="Last name" required>
+                <input type="text" placeholder="Last name" required name="lastname">
+            </div>
+          
+            <div class="input-class">
+                <input type="email" placeholder="Email" required name="email">
             </div>
             <div class="input-class">
-                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required name="password">
             </div>
             <div class="input-class">
-                <input type="password" placeholder="Password" required>
-            </div>
-            <div class="input-class">
-                <input type="tel" placeholder="Phone number" required>
+                <input type="tel" placeholder="Phone number" required name="Phone">
             </div>
             <div class="input-class">
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" placeholder="Age" min="18" max="99" required>
+                <input type="number" id="age" name="age" placeholder="Age" min="18" max="99" required name="age">
             </div>
             <div class="input-class">
-                <label><input type="radio" name="gender" value="male" required> Male</label>
-                <label><input type="radio" name="gender" value="female" required> Female</label>
+                <label><input type="radio" name="gender" value="male" required name="m"> Male</label>
+                <label><input type="radio" name="gender" value="female" required name="f"> Female</label>
             </div>
             <div class="login-link">
                 <button type="submit" class="btn">Signup</button>
-                <p>Already have an account? <a href="login.html">Login</a></p>
+                <p>Already have an account? <a href="login.php">Login</a></p>
             </div>
         </form>
     </div>

@@ -1,3 +1,5 @@
+<?php include('server.php')?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,21 +14,21 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
+        <form method="post" action="login.php">
             <h1>Login</h1>
             <div class="input-class">
-                <input type="text" placeholder="username" required>
+                <input type="text" placeholder="Email" name="email" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-class">
-                <input type="password" placeholder="password" required>
-                <i class='bx bx-lock-alt' ></i>
+                <input type="password" placeholder="Password" name="password" required>
+                <i class='bx bx-lock-alt'></i>
             </div>
             <div class="remember-forgot">
-                <label><input type="checkbox" required>Remember me </label>
+                <label><input type="checkbox" name="remember">Remember me</label>
                 <a href="#">Forgot password?</a>
             </div>
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn" name="login_user">Login</button>
             <div class="register-link">
                 <p>Don't have an account? <a href="signup.html">Register</a></p>
             </div>
