@@ -1,0 +1,37 @@
+<!-- admin-login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Car Driving School</title>
+    <link rel="stylesheet" href="admin-login-style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 style="margin-bottom: 0;">Car Driving School - Admin Login</h1>
+    </header>
+
+    <section id="adminLoginSection">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm" onsubmit="loginAdmin(event)">
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" name="adminUsername" required>
+
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" name="adminPassword" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <script src="admin-login-script.js"></script>
+
+</body>
+
+    
+</html>

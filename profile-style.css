@@ -104,11 +104,11 @@ input {
 .form-group button {
     background-color: #3498db; /* Blue button color */
     color: #fff;
-    padding: 8px 12px; /* Adjusted padding for the update button */
+    padding: 8px 5px; /* Adjusted padding for the update button */
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 50%; /* Button width set to 100% of the container */
+    width: 20; /* Button width set to 100% of the container */
     margin-top: 10px; /* Margin added at the top of the button */
 }
 

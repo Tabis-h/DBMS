@@ -75,15 +75,11 @@
     </footer>
 
     <script>
-        function toggleCourses() {
-            var coursesSection = document.getElementById("coursesSection");
-            coursesSection.style.display = (coursesSection.style.display === "none") ? "block" : "none";
-        }
-
-        function redirectToAdmin() {
-            // Redirect to admin page or perform admin-related actions
-            alert("Redirecting to Admin Page");
-        }
+       function redirectToAdmin() {
+            // Redirect to admin login page
+            window.location.href = 'admin-login.html';
+       }
+        
     </script>
 </body>
 
