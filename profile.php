@@ -1,3 +1,26 @@
+<?php
+session_start();
+include('db_connection.php');
+
+// Check if the user is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.html');
+    exit();
+}
+
+// Fetch user data from the database using the stored user ID
+$userId = $_SESSION['user_id'];
+$query = "SELECT * FROM users WHERE user_id='$userId'";
+$result = mysqli_query($db, $query);
+
+if ($result && mysqli_num_rows($result) == 1) {
+    $user = mysqli_fetch_assoc($result);
+} else {
+    // Handle the case where the user is not found
+    // You can redirect to an error page or handle it based on your requirements
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,27 +38,27 @@
         <form id="profile-form">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <input type="text" id="lastName" name="lastName" value="<?php echo $user['last_name']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="contactNumber">Contact Number:</label>
-                <input type="tel" id="contactNumber" name="contactNumber" required>
+                <input type="tel" id="contactNumber" name="contactNumber" value="<?php echo $user['phone']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="registrationDate">Registration Date:</label>
-                <input type="text" id="registrationDate" name="registrationDate" readonly>
+                <input type="text" id="registrationDate" name="registrationDate" value="<?php echo $user['registration_date']; ?>" readonly>
             </div>
 
             <button type="button" onclick="updateProfile()">Update</button>
@@ -43,29 +66,13 @@
     </div>
 
     <script>
-        // Assuming you have a function to fetch and populate user data
-        function populateProfile() {
-            // Fetch user data and populate the input fields
-            // For example, you can use an API call or retrieve data from your database
-            // Dummy data for demonstration purposes:
-            document.getElementById('firstName').value = 'John';
-            document.getElementById('lastName').value = 'Doe';
-            document.getElementById('contactNumber').value = '+1234567890';
-            document.getElementById('email').value = 'john.doe@example.com';
-            document.getElementById('registrationDate').value = '2022-01-01'; // Replace with actual registration date
-        }
-
+        // Function to update the profile (you can implement this function as needed)
         function updateProfile() {
             // Perform the update action
             // For example, you can use an API call to update user data
             // Dummy action for demonstration purposes:
             alert('Profile updated successfully!');
         }
-
-        // Populate the profile form when the page loads
-        document.addEventListener('DOMContentLoaded', function () {
-            populateProfile();
-        });
     </script>
 </body>
 

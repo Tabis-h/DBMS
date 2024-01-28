@@ -1,5 +1,3 @@
-<!-- admin-login.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Car Driving School</title>
     <link rel="stylesheet" href="admin-login-style.css">
+    <script src="admin-login-script.js"></script>
 </head>
 
 <body>
@@ -18,7 +17,8 @@
 
     <section id="adminLoginSection">
         <h2>Admin Login</h2>
-        <form id="adminLoginForm" onsubmit="loginAdmin(event)">
+
+        <form id="adminLoginForm" onsubmit="loginAdmin(event)" action="admin-login.php" method="post">
             <label for="adminUsername">Username:</label>
             <input type="text" id="adminUsername" name="adminUsername" required>
 
@@ -29,9 +29,6 @@
         </form>
     </section>
 
-    <script src="admin-login-script.js"></script>
-
 </body>
 
-    
 </html>

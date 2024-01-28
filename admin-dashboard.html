@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Car Driving School</title>
+    <link rel="stylesheet" href="admin-dashboard-style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Car Driving School Admin Dashboard</h1>
+    </header>
+
+    <section id="adminDashboardSection">
+        <h2>Welcome, Admin!</h2>
+
+        <div class="dashboard-content">
+            <h3><a href="enrolled-students.php">Enrolled Students</a></h3>
+        </div>
+        
+        
+
+        <div class="dashboard-content">
+            <h3>Fees Payment</h3>
+            <?php include 'fees-payment.php'; ?>
+            
+        </div>
+        <div class="dashboard-content">
+            <h3>Course Management</h3>
+            <p><a href="manage_courses.php">Manage Courses</a></p>
+        </div>
+
+        <a href="admin-login.html">Logout</a>
+    </section>
+
+</body>
+
+</html>

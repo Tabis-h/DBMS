@@ -70,10 +70,7 @@
 
         <label for="course">Select Course:</label>
         <select name="course" id="course" required>
-            <option value="suv-6">SUV Driving Course (6 weeks)</option>
-            <option value="sedan-8">Sedan Driving Course (8 weeks)</option>
-            <option value="motorcycle-9">Motorcycle Riding Course (9 weeks)</option>
-            <!-- Add more courses as needed -->
+            <!-- Courses will be dynamically added here using JavaScript -->
         </select>
 
         <label for="fullname">Full Name:</label>
@@ -86,6 +83,23 @@
         <input type="tel" name="phone" id="phone" required>
 
         <button type="submit">Submit</button>
+
+        <script>
+            // Fetch courses using JavaScript
+            fetch('fetch-courses.php')
+                .then(response => response.json())
+                .then(courses => {
+                    // Populate the select element with fetched courses
+                    const courseSelect = document.getElementById('course');
+                    courses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course;
+                        option.textContent = course;
+                        courseSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching courses:', error));
+        </script>
 
     </form>
 

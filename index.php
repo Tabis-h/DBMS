@@ -23,8 +23,8 @@
 
     <nav>
         <a href="#" onclick="toggleCourses()">Courses</a>
-        <a href="enrollment.php">Enrollment</a>
-        <a href="login.php">Login</a>
+        <a href="enrollment.html">Enrollment</a>
+        <a href="login.html">Login</a>
         <div class="user-profile-btn">
             <button class="dropbtn">Profile <i class="fas fa-caret-down"></i></button>
             <div class="dropdown-content">
