@@ -1,18 +1,15 @@
 <?php
-// Database configuration
-$servername = "localhost";  // Change this if your MySQL server is on a different host
-$username = "root";  // Replace with your MySQL username
-$password = "";  // Replace with your MySQL password
-$dbname = "signup_page";  // Replace with your database name
 
-// Create connection
+$servername = "localhost";  
+$username = "root";  
+$password = "";  
+$dbname = "signup_page";  
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST["firstname"];
@@ -23,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST["age"];
     $gender = $_POST["gender"];
 
-    // Insert data into the 'users' table
     $sql = "INSERT INTO users (first_name, last_name, email, password, phone, age, gender)
             VALUES ('$first_name', '$last_name', '$email', '$password', '$phone', $age, '$gender')";
 
@@ -34,6 +30,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close the database connection
 $conn->close();
-?>

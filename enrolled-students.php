@@ -1,5 +1,4 @@
 <?php
-// Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -7,12 +6,10 @@ $dbname = "signup_page";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch enrolled students data
 $sql = "SELECT * FROM enrollment_data";
 $result = $conn->query($sql);
 ?>
@@ -39,7 +36,6 @@ $result = $conn->query($sql);
         </tr>
 
         <?php
-        // Loop through the fetched data and display it in the table
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
@@ -53,7 +49,6 @@ $result = $conn->query($sql);
     </table>
 
     <?php
-    // Close the database connection
     $conn->close();
     ?>
 

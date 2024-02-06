@@ -2,13 +2,11 @@
 session_start();
 include('db_connection.php');
 
-// Check if the user is not logged in, redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header('location: login.html');
     exit();
 }
 
-// Fetch user data from the database using the stored user ID
 $userId = $_SESSION['user_id'];
 $query = "SELECT * FROM users WHERE user_id='$userId'";
 $result = mysqli_query($db, $query);
@@ -16,8 +14,7 @@ $result = mysqli_query($db, $query);
 if ($result && mysqli_num_rows($result) == 1) {
     $user = mysqli_fetch_assoc($result);
 } else {
-    // Handle the case where the user is not found
-    // You can redirect to an error page or handle it based on your requirements
+
 }
 ?>
 
@@ -66,11 +63,9 @@ if ($result && mysqli_num_rows($result) == 1) {
     </div>
 
     <script>
-        // Function to update the profile (you can implement this function as needed)
+
         function updateProfile() {
-            // Perform the update action
-            // For example, you can use an API call to update user data
-            // Dummy action for demonstration purposes:
+
             alert('Profile updated successfully!');
         }
     </script>

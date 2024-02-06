@@ -7,7 +7,7 @@
     <title>SIGNUP</title>
     <link rel="stylesheet" href="signup-style.css">
     <style>
-        /* Add your custom styles here */
+
         .input-class {
             display: flex;
             align-items: center;
@@ -29,7 +29,7 @@
             <div class="input-class">
                 <input type="text" placeholder="Last name" required name="lastname">
             </div>
-          
+
             <div class="input-class">
                 <input type="email" placeholder="Email" required name="email">
             </div>

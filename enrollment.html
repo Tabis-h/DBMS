@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,35 +60,24 @@
         }
     </style>
 </head>
-
 <body>
-
     <form action="enrollment_process.php" method="post">
-
         <h1>Enrollment Form</h1>
-
         <label for="course">Select Course:</label>
         <select name="course" id="course" required>
             <!-- Courses will be dynamically added here using JavaScript -->
         </select>
-
         <label for="fullname">Full Name:</label>
         <input type="text" name="fullname" id="fullname" required>
-
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>
-
         <label for="phone">Phone Number:</label>
         <input type="tel" name="phone" id="phone" required>
-
         <button type="submit">Submit</button>
-
         <script>
-            // Fetch courses using JavaScript
             fetch('fetch-courses.php')
                 .then(response => response.json())
                 .then(courses => {
-                    // Populate the select element with fetched courses
                     const courseSelect = document.getElementById('course');
                     courses.forEach(course => {
                         const option = document.createElement('option');
@@ -98,6 +86,10 @@
                         courseSelect.appendChild(option);
                     });
                 })
+        </script>
+    </form>
+</body>
+</html>
                 .catch(error => console.error('Error fetching courses:', error));
         </script>
 
