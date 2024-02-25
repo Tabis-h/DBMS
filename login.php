@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-// Define error messages
+
 $errors = array(
     "emptyfields" => "Please fill in all fields.",
     "invalidlogin" => "Invalid email or password.",
     "sqlerror" => "Database error. Please try again later."
 );
 
-// Check for errors in the URL query string
+
 $error_message = "";
 if (isset($_GET['error']) && isset($errors[$_GET['error']])) {
     $error_message = $errors[$_GET['error']];

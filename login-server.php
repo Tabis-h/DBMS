@@ -24,7 +24,7 @@ if (isset($_POST['login_user'])) {
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['email'] = $row['email'];
 
-                // Redirect to index.php upon successful login
+                
                 header("Location: index.php");
                 exit();
             } else {
@@ -40,7 +40,7 @@ if (isset($_POST['login_user'])) {
     }
 } else {
 
-    // Redirect to login page if login form is not submitted
+    
     header("Location: login.php");
     exit();
 }

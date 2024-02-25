@@ -34,26 +34,26 @@
     <h1>Fees Payment - Admin Panel</h1>
 
     <?php
-    // Database configuration
+    
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "signup_page";
 
-    // Create connection
+    
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
+    
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Handle updating paid fees
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["studentId"]) && isset($_POST["paidFees"])) {
         $studentId = $_POST["studentId"];
         $paidFees = $_POST["paidFees"];
 
-        // Update paid fees in the database
+        
         $update_sql = "UPDATE enrollment_data SET paid_fee = '$paidFees' WHERE id = $studentId";
         if ($conn->query($update_sql) === TRUE) {
             echo "Paid fees updated successfully!";
@@ -62,11 +62,11 @@
         }
     }
 
-    // Fetch data from enrollment_data table
+    
     $enrollment_sql = "SELECT id, fullname, email, id, paid_fee FROM enrollment_data";
     $enrollment_result = $conn->query($enrollment_sql);
 
-    // Fetch data from courses table
+    
     $courses_sql = "SELECT id, course_name, fee FROM courses";
     $courses_result = $conn->query($courses_sql);
 
@@ -74,9 +74,9 @@
         echo "<table>";
         echo "<tr><th>Full Name</th><th>Email</th><th>Course Name</th><th>Fees</th><th>Paid Fees</th><th>Action</th></tr>";
 
-        // Loop through each enrollment row
+        
         while ($enrollment_row = $enrollment_result->fetch_assoc()) {
-            // Fetch corresponding course details using course ID
+            
             $id = $enrollment_row['id'];
             $course_sql = "SELECT course_name, fee FROM courses WHERE id = $id";
             $course_result = $conn->query($course_sql);
@@ -110,7 +110,7 @@
             var row = document.querySelector("tr[data-id='" + studentId + "']");
             var paidFees = row.querySelector("td:nth-child(5)").innerText.trim();
 
-            // Update paid fees in the database using form submission
+            
             var form = document.createElement("form");
             form.method = "post";
             form.action = "";

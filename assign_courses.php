@@ -1,13 +1,13 @@
 <?php
 include('db_connection.php');
 
-// Check if the form is submitted for assigning a course
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_course'])) {
-    // Retrieve employee ID and course ID from the form
+    
     $employee_id = $_POST['employee_id'];
     $course_id = $_POST['course_id'];
 
-    // Fetch employee name from the database based on the selected employee ID
+    
     $sql_employee_name = "SELECT name FROM employees WHERE emp_id = ?";
     $stmt_employee_name = $db->prepare($sql_employee_name);
     $stmt_employee_name->bind_param("i", $employee_id);
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_course'])) {
     $row_employee_name = $result_employee_name->fetch_assoc();
     $employee_name = $row_employee_name['name'];
 
-    // Fetch course name from the database based on the selected course ID
+    
     $sql_course_name = "SELECT course_name FROM courses WHERE c_id = ?";
     $stmt_course_name = $db->prepare($sql_course_name);
     $stmt_course_name->bind_param("i", $course_id);
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_course'])) {
     $row_course_name = $result_course_name->fetch_assoc();
     $course_name = $row_course_name['course_name'];
 
-    // Prepare and execute the SQL query to insert the assignment into the database
+    
     $sql_insert = "INSERT INTO employee_course_assignment (emp_id, emp_name, c_id, course_name) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($sql_insert);
     $stmt->bind_param("isss", $employee_id, $employee_name, $course_id, $course_name);
@@ -37,12 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_course'])) {
     }
 }
 
-// Check if the form is submitted for removing an assigned course
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_course'])) {
-    // Retrieve the ID of the assigned course to remove
+    
     $assigned_course_id = $_POST['assigned_course_id'];
 
-    // Prepare and execute the SQL query to delete the assigned course from the database
+    
     $sql_delete = "DELETE FROM employee_course_assignment WHERE emp_id = ?";
     $stmt = $db->prepare($sql_delete);
     $stmt->bind_param("i", $assigned_course_id);
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_course'])) {
     <title>Assign Courses - Car Driving School</title>
     <link rel="stylesheet" href="admin-dashboard-style.css">
     <style>
-        /* Add custom CSS for improved appearance */
+        
         form {
             max-width: 400px;
             margin-top: 20px;

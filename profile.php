@@ -9,17 +9,17 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// Fetch user details from the database based on user_id
+
 $query = "SELECT * FROM users WHERE user_id='$userId'";
 $result = mysqli_query($db, $query);
 
 if ($result && mysqli_num_rows($result) == 1) {
     $user = mysqli_fetch_assoc($result);
 } else {
-    // Handle error or redirect
+    
 }
 
-// Fetch assigned employee details based on user ID
+
 $sql = "SELECT employees.emp_id, employees.name, employees.email, employees.course_hand
         FROM users
         JOIN enrollment_data ON users.user_id = enrollment_data.user_id
@@ -28,24 +28,24 @@ $sql = "SELECT employees.emp_id, employees.name, employees.email, employees.cour
         WHERE users.user_id = '$userId'";
 $result_assigned_employee = mysqli_query($db, $sql);
 
-// Check if the form is submitted for updating user details
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $contactNumber = $_POST['contactNumber'];
     $email = $_POST['email'];
 
-    // Update user details in the database
+    
     $updateQuery = "UPDATE users SET first_name='$firstName', last_name='$lastName', phone='$contactNumber', email='$email' WHERE user_id='$userId'";
     $updateResult = mysqli_query($db, $updateQuery);
 
     if ($updateResult) {
-        // Redirect to the same page to refresh the profile with updated details
+        
         header('Location: profile.php');
         exit();
     } else {
-        // Handle error
+        
     }
 }
 

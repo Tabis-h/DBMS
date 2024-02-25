@@ -126,7 +126,7 @@ $courses_result = $conn->query($courses_sql);
 
     <h1>Manage Courses - Admin Panel</h1>
 
-    <!-- Add New Course Section -->
+    
     <section>
         <h2>Add New Course</h2>
         <form method="post" action="">
@@ -136,7 +136,7 @@ $courses_result = $conn->query($courses_sql);
         </form>
     </section>
 
-    <!-- Remove Course Section -->
+    
     <section>
         <h2>Remove Course</h2>
         <form method="post" action="">
@@ -153,7 +153,7 @@ $courses_result = $conn->query($courses_sql);
         </form>
     </section>
 
-    <!-- Update Fees Section -->
+    
     <section>
         <h2>Update Fees</h2>
         <form method="post" action="">
@@ -171,14 +171,14 @@ $courses_result = $conn->query($courses_sql);
         </form>
     </section>
 
-   <!-- Update Timing and Length Section -->
+   
 <section>
     <h2>Update Timing and Length</h2>
     <form method="post" action="">
         <label for="course_to_update_timing_length">Select Course:</label>
         <select name="course_to_update_timing_length" id="course_to_update_timing_length" required>
             <?php
-            // Reset the internal pointer of the courses result set to the beginning
+            
             mysqli_data_seek($courses_result, 0);
             while ($row = $courses_result->fetch_assoc()) {
                 echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
@@ -193,7 +193,7 @@ $courses_result = $conn->query($courses_sql);
     </form>
 </section>
 
-    <!-- Add more sections or features as needed -->
+    
 
 </body>
 

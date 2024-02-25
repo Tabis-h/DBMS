@@ -1,7 +1,7 @@
 <?php
 include('db_connection.php');
 
-// Fetch employees from the database
+
 $sql = "SELECT * FROM employees";
 $result = $db->query($sql);
 
@@ -18,7 +18,7 @@ if (!$result) {
     <title>Employee Management - Car Driving School</title>
     <link rel="stylesheet" href="admin-dashboard-style.css">
     <style>
-        /* Add custom CSS for improved appearance */
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -70,7 +70,7 @@ if (!$result) {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Course Hand</th>
-                        <!-- Add more columns if needed -->
+                        
                     </tr>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
@@ -78,7 +78,7 @@ if (!$result) {
                             <td><?php echo $row['name']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['course_hand']; ?></td>
-                            <!-- Display more data if needed -->
+                            
                         </tr>
                     <?php endwhile; ?>
                 </table>
@@ -88,12 +88,12 @@ if (!$result) {
         </div>
         <div class="dashboard-content">
             <h3>Add Employee</h3>
-            <!-- Your form to add a new employee -->
+            
             <form method="post" action="add_employee.php">
                 <input type="text" name="name" placeholder="Employee Name">
                 <input type="email" name="email" placeholder="Employee Email">
                 <input type="text" name="course_hand" placeholder="Course Hand">
-                <!-- Add more input fields if needed -->
+                
                 <button type="submit">Add Employee</button>
             </form>
         </div>

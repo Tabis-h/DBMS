@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-// Logout logic
+
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: index.php"); // Redirect to the homepage after logout
+    header("Location: index.php"); 
     exit();
 }
 
-// Check if the user is logged in
+
 $isLoggedIn = isset($_SESSION['user_id']);
 ?>
 
@@ -20,7 +20,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Driving School</title>
     <link rel="stylesheet" href="index-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    <link rel="stylesheet" href="https:
         integrity="sha512-BFVHzxhpr3sKJRDXmLW3o2ZUvZl+g1yUWRwBzCGj8v7+/Hc1hvDdE4Lk8tntDxG4Hs2NoOJ/N6tCx9e9VTJlbA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -70,7 +70,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <script>
         function redirectToAdmin() {
-            // Redirect to admin login page
+            
             window.location.href = 'admin-login.html';
         }
 
@@ -89,7 +89,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 .then(response => response.json())
                 .then(data => {
                     var coursesData = document.getElementById('coursesData');
-                    coursesData.innerHTML = ''; // Clear previous data
+                    coursesData.innerHTML = ''; 
 
                     data.forEach(course => {
                         var row = document.createElement('tr');
