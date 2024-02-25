@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 05:22 PM
+-- Generation Time: Feb 25, 2024 at 03:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,18 +47,99 @@ INSERT INTO `admin_users` (`id`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `courses` (
-  `id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
   `course_name` varchar(255) NOT NULL,
   `fee` decimal(10,2) DEFAULT 0.00,
-  `paid_fee` decimal(10,2) DEFAULT 0.00
+  `course_length` varchar(50) DEFAULT NULL,
+  `timing` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `fee`, `paid_fee`) VALUES
-(6, 'Car Driving (6 weeks)', 6000.00, 3000.00);
+INSERT INTO `courses` (`c_id`, `course_name`, `fee`, `course_length`, `timing`) VALUES
+(9, 'Car Driving package 1', 8000.00, '45 days', '2-5 pm'),
+(12, 'Car Driving package 3', 4000.00, '5 months', '10 am - 12 pm'),
+(14, 'Car Driving package 2', 6000.00, '3 months', '2-5 pm'),
+(16, 'Sedan Driving Course (6 weeks)', 8000.00, '45 days', '08am-12am  ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `emp_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `course_hand` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`emp_id`, `name`, `email`, `course_hand`) VALUES
+(1, 'goook', 'hsksdb', 'package 1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_course_assignment`
+--
+
+CREATE TABLE `employee_course_assignment` (
+  `emp_id` int(11) NOT NULL,
+  `emp_name` varchar(20) NOT NULL,
+  `c_id` int(11) NOT NULL,
+  `course_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_course_assignment`
+--
+
+INSERT INTO `employee_course_assignment` (`emp_id`, `emp_name`, `c_id`, `course_name`) VALUES
+(1, 'goook', 9, 'Car Driving package ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_logins`
+--
+
+CREATE TABLE `employee_logins` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_logins`
+--
+
+INSERT INTO `employee_logins` (`username`, `password`) VALUES
+('emp', '123emp');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_student_assignment`
+--
+
+CREATE TABLE `employee_student_assignment` (
+  `id` int(11) NOT NULL,
+  `emp_id` int(11) DEFAULT NULL,
+  `enr_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_student_assignment`
+--
+
+INSERT INTO `employee_student_assignment` (`id`, `emp_id`, `enr_id`) VALUES
+(7, 1, 19);
 
 -- --------------------------------------------------------
 
@@ -67,21 +148,23 @@ INSERT INTO `courses` (`id`, `course_name`, `fee`, `paid_fee`) VALUES
 --
 
 CREATE TABLE `enrollment_data` (
-  `id` int(11) NOT NULL,
+  `enr_id` int(11) NOT NULL,
+  `user_id` int(10) NOT NULL,
   `course` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `submission_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `submission_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `paid_fee` int(4) DEFAULT NULL,
+  `assigned_employee_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `enrollment_data`
 --
 
-INSERT INTO `enrollment_data` (`id`, `course`, `fullname`, `email`, `phone`, `submission_date`) VALUES
-(6, 'Car Driving (6 weeks)', 'Mohammad Tabish Arif Subedar', 'tabishsubedar50@gmail.com', '09113067356', '2024-02-05 14:03:55'),
-(7, 'Car Driving (6 weeks)', 'shaheen aris subedar', 'shaheeensubedar@outlook.com', '09880378468', '2024-02-05 16:15:11');
+INSERT INTO `enrollment_data` (`enr_id`, `user_id`, `course`, `fullname`, `email`, `phone`, `submission_date`, `paid_fee`, `assigned_employee_id`) VALUES
+(19, 13, 'Car Driving package 1', 'tabish subedar', '123@gmail.com', '9880', '2024-02-24 13:57:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,8 +189,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `age`, `gender`, `registration_date`) VALUES
-(9, 'tabish', 'subedar', 'tabishsubedar50@gmail.com', '123456', '09113067356', 19, 'male', '2024-01-28 20:41:42'),
-(10, 'abc', 'def', 'shaheeensubedar@outlook.com', '123456', '09880378468', 18, 'male', '2024-01-28 20:44:58');
+(11, 'abdu', 'kugui', 'jhfyu@hjgf.com', '1234567890', '1236547890', 18, 'female', '2024-02-06 23:00:58'),
+(12, 'ADNAN', 'PATEL', 'PATELADNAN557@GMAIL.COM', '123', '123', 20, 'male', '2024-02-19 23:06:46'),
+(13, 'tabis', 'subedar', '123@gmail.com', '123', '9880', 19, 'male', '2024-02-24 19:26:40');
 
 --
 -- Indexes for dumped tables
@@ -123,14 +207,34 @@ ALTER TABLE `admin_users`
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`c_id`),
   ADD UNIQUE KEY `course_name` (`course_name`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`emp_id`);
+
+--
+-- Indexes for table `employee_logins`
+--
+ALTER TABLE `employee_logins`
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `employee_student_assignment`
+--
+ALTER TABLE `employee_student_assignment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `enr_id` (`enr_id`);
 
 --
 -- Indexes for table `enrollment_data`
 --
 ALTER TABLE `enrollment_data`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`enr_id`);
 
 --
 -- Indexes for table `users`
@@ -152,19 +256,42 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `employee_student_assignment`
+--
+ALTER TABLE `employee_student_assignment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `enrollment_data`
 --
 ALTER TABLE `enrollment_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `enr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `employee_student_assignment`
+--
+ALTER TABLE `employee_student_assignment`
+  ADD CONSTRAINT `employee_student_assignment_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
+  ADD CONSTRAINT `employee_student_assignment_ibfk_2` FOREIGN KEY (`enr_id`) REFERENCES `enrollment_data` (`enr_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

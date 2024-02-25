@@ -38,7 +38,7 @@ $result = $conn->query($sql);
         <?php
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['enr_id'] . "</td>";
             echo "<td>" . $row['course'] . "</td>";
             echo "<td>" . $row['fullname'] . "</td>";
             echo "<td>" . $row['email'] . "</td>";

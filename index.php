@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Logout logic
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: index.php"); // Redirect to the homepage after logout
+    exit();
+}
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,16 +20,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Driving School</title>
     <link rel="stylesheet" href="index-style.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-BFVHzxhpr3sKJRDXmLW3o2ZUvZl+g1yUWRwBzCGj8v7+/Hc1hvDdE4Lk8tntDxG4Hs2NoOJ/N6tCx9e9VTJlbA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    
 </head>
 
 <body>
-
     <header>
         <h1 style="margin-bottom: 0;">Car Driving School</h1>
         <button class="admin-btn" onclick="redirectToAdmin()">Admin</button>
@@ -24,20 +34,22 @@
     <nav>
         <a href="#" onclick="toggleCourses()">Courses</a>
         <a href="enrollment.html">Enrollment</a>
-        <a href="login.html">Login</a>
+        <?php if ($isLoggedIn) : ?>
+            <a href="?logout" class="logout-btn">Logout</a>
+        <?php else : ?>
+            <a href="login.php">Login</a>
+        <?php endif; ?>
         <div class="user-profile-btn">
             <button class="dropbtn">Profile <i class="fas fa-caret-down"></i></button>
             <div class="dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a href="profile.php">Profile</a>                
             </div>
         </div>
     </nav>
 
     <section id="coursesSection" style="display: none;">
         <h2>Courses Offered</h2>
-        <table>
+        <table id="coursesTable">
             <thead>
                 <tr>
                     <th>Course</th>
@@ -46,26 +58,8 @@
                     <th>Timing</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>SUV Driving Course</td>
-                    <td>9000</td>
-                    <td>6 weeks</td>
-                    <td>Mon-Fri, 9 am - 12 pm</td>
-                </tr>
-                <tr>
-                    <td>SUV Driving Course</td>
-                    <td>7000</td>
-                    <td>8 weeks</td>
-                    <td>Mon-Fri, 2 pm - 5 pm</td>
-                </tr>
-                <tr>
-                    <td>SUV Driving Course</td>
-                    <td>5000</td>
-                    <td>9 weeks</td>
-                    <td>Sat-Sun, 10 am - 1 pm</td>
-                </tr>
-                <!-- Add more courses as needed -->
+            <tbody id="coursesData">
+                <!-- Course data will be dynamically added here -->
             </tbody>
         </table>
     </section>
@@ -75,11 +69,41 @@
     </footer>
 
     <script>
-       function redirectToAdmin() {
+        function redirectToAdmin() {
             // Redirect to admin login page
             window.location.href = 'admin-login.html';
-       }
-        
+        }
+
+        function toggleCourses() {
+            var coursesSection = document.getElementById('coursesSection');
+            if (coursesSection.style.display === 'none') {
+                coursesSection.style.display = 'block';
+                fetchCourses();
+            } else {
+                coursesSection.style.display = 'none';
+            }
+        }
+
+        function fetchCourses() {
+            fetch('fetch_courses.php')
+                .then(response => response.json())
+                .then(data => {
+                    var coursesData = document.getElementById('coursesData');
+                    coursesData.innerHTML = ''; // Clear previous data
+
+                    data.forEach(course => {
+                        var row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${course.course_name}</td>
+                            <td>${course.fee}</td>
+                            <td>${course.course_length}</td>
+                            <td>${course.timing}</td>
+                        `;
+                        coursesData.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching courses:', error));
+        }
     </script>
 </body>
 

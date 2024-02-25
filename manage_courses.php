@@ -13,53 +13,39 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['add_course'])) {
-
         $new_course = mysqli_real_escape_string($conn, $_POST['new_course']);
-
-        $check_course_sql = "SELECT * FROM courses WHERE course_name = '$new_course'";
-        $check_course_result = $conn->query($check_course_sql);
-
-        if ($check_course_result->num_rows > 0) {
-            echo "Course already exists.";
+        $insert_course_sql = "INSERT INTO courses (course_name) VALUES ('$new_course')";
+        if ($conn->query($insert_course_sql) === TRUE) {
+            echo "Course added successfully!";
         } else {
-
-            $insert_course_sql = "INSERT INTO courses (course_name) VALUES ('$new_course')";
-
-            if ($conn->query($insert_course_sql) === TRUE) {
-                echo "Course added successfully!";
-            } else {
-                echo "Error adding course: " . $conn->error;
-            }
+            echo "Error adding course: " . $conn->error;
         }
     } elseif (isset($_POST['remove_course'])) {
         $course_to_remove = $_POST['course_to_remove'];
-
-        $check_course_sql = "SELECT * FROM courses WHERE course_name = '$course_to_remove'";
-        $check_course_result = $conn->query($check_course_sql);
-
-        if ($check_course_result->num_rows > 0) {
-
-            $remove_course_sql = "DELETE FROM courses WHERE course_name = '$course_to_remove'";
-
-            if ($conn->query($remove_course_sql) === TRUE) {
-                echo "Course removed successfully!";
-            } else {
-                echo "Error removing course: " . $conn->error;
-            }
+        $remove_course_sql = "DELETE FROM courses WHERE course_name = '$course_to_remove'";
+        if ($conn->query($remove_course_sql) === TRUE) {
+            echo "Course removed successfully!";
         } else {
-            echo "Course does not exist.";
+            echo "Error removing course: " . $conn->error;
         }
     } elseif (isset($_POST['update_fees'])) {
-
         $course_to_update = mysqli_real_escape_string($conn, $_POST['course_to_update']);
         $new_fee = mysqli_real_escape_string($conn, $_POST['new_fee']);
-
         $update_fee_sql = "UPDATE courses SET fee = $new_fee WHERE course_name = '$course_to_update'";
-
         if ($conn->query($update_fee_sql) === TRUE) {
             echo "Fees updated successfully!";
         } else {
             echo "Error updating fees: " . $conn->error;
+        }
+    } elseif (isset($_POST['update_timing_length'])) {
+        $course_to_update_timing_length = mysqli_real_escape_string($conn, $_POST['course_to_update_timing_length']);
+        $new_timing = mysqli_real_escape_string($conn, $_POST['new_timing']);
+        $new_length = mysqli_real_escape_string($conn, $_POST['new_length']);
+        $update_timing_length_sql = "UPDATE courses SET timing = '$new_timing', course_length = '$new_length' WHERE course_name = '$course_to_update_timing_length'";
+        if ($conn->query($update_timing_length_sql) === TRUE) {
+            echo "Timing and length updated successfully!";
+        } else {
+            echo "Error updating timing and length: " . $conn->error;
         }
     }
 }
@@ -140,6 +126,7 @@ $courses_result = $conn->query($courses_sql);
 
     <h1>Manage Courses - Admin Panel</h1>
 
+    <!-- Add New Course Section -->
     <section>
         <h2>Add New Course</h2>
         <form method="post" action="">
@@ -149,17 +136,16 @@ $courses_result = $conn->query($courses_sql);
         </form>
     </section>
 
+    <!-- Remove Course Section -->
     <section>
         <h2>Remove Course</h2>
         <form method="post" action="">
             <label for="course_to_remove">Select Course:</label>
             <select name="course_to_remove" id="course_to_remove" required>
                 <?php
-
                 while ($row = $courses_result->fetch_assoc()) {
                     echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
                 }
-
                 mysqli_data_seek($courses_result, 0);
                 ?>
             </select>
@@ -167,32 +153,52 @@ $courses_result = $conn->query($courses_sql);
         </form>
     </section>
 
+    <!-- Update Fees Section -->
     <section>
         <h2>Update Fees</h2>
         <form method="post" action="">
             <label for="course_to_update">Select Course:</label>
             <select name="course_to_update" id="course_to_update" required>
                 <?php
-
                 while ($row = $courses_result->fetch_assoc()) {
                     echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
                 }
                 ?>
             </select>
-
             <label for="new_fee">New Fee:</label>
             <input type="number" id="new_fee" name="new_fee" step="0.01" required>
-
             <button type="submit" name="update_fees">Update Fees</button>
         </form>
     </section>
 
+   <!-- Update Timing and Length Section -->
+<section>
+    <h2>Update Timing and Length</h2>
+    <form method="post" action="">
+        <label for="course_to_update_timing_length">Select Course:</label>
+        <select name="course_to_update_timing_length" id="course_to_update_timing_length" required>
+            <?php
+            // Reset the internal pointer of the courses result set to the beginning
+            mysqli_data_seek($courses_result, 0);
+            while ($row = $courses_result->fetch_assoc()) {
+                echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+            }
+            ?>
+        </select>
+        <label for="new_timing">New Timing:</label>
+        <input type="text" id="new_timing" name="new_timing" required>
+        <label for="new_length">New Length:</label>
+        <input type="text" id="new_length" name="new_length" required>
+        <button type="submit" name="update_timing_length">Update Timing and Length</button>
+    </form>
+</section>
+
     <!-- Add more sections or features as needed -->
+
 </body>
 
 </html>
 
 <?php
-
 $conn->close();
 ?>

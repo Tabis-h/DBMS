@@ -9,7 +9,7 @@ if (isset($_POST['login_user'])) {
 
     if (empty($email) || empty($password)) {
 
-        header("Location: login.php?error=emptyfields");
+        echo "error=emptyfields";
         exit();
     } else {
 
@@ -24,22 +24,23 @@ if (isset($_POST['login_user'])) {
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['email'] = $row['email'];
 
+                // Redirect to index.php upon successful login
                 header("Location: index.php");
                 exit();
             } else {
 
-                header("Location: login.php?error=invalidlogin");
+                echo "error=invalidlogin";
                 exit();
             }
         } else {
 
-            header("Location: login.php?error=sqlerror");
+            echo "error=sqlerror";
             exit();
         }
     }
 } else {
 
+    // Redirect to login page if login form is not submitted
     header("Location: login.php");
     exit();
 }
-?>
